@@ -76,14 +76,14 @@ function App() {
             <button
               onClick={handleGenerate}
               disabled={names.length === 0}
-              className="w-full bg-pink-600 text-white text-lg font-serif py-3 rounded-lg shadow-lg hover:bg-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:-translate-y-1"
+              className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white text-xl font-serif py-4 rounded-2xl shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:-translate-y-1 active:translate-y-0"
             >
               Generate Puzzle
             </button>
 
             <button
               onClick={handlePrint}
-              className="w-full bg-white text-pink-600 border-2 border-pink-200 text-lg font-serif py-3 rounded-lg shadow hover:bg-pink-50 transition-colors"
+              className="w-full bg-white text-pink-600 border-2 border-pink-100 text-xl font-serif py-4 rounded-2xl shadow-sm hover:bg-pink-50 hover:border-pink-200 transition-all"
             >
               Print Puzzle
             </button>
