@@ -1,40 +1,50 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
+import { AlertCircle } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const PuzzleGrid: React.FC = () => {
     const { grid, status, unplacedWords } = useSelector((state: RootState) => state.puzzle);
+    const { t } = useLanguage();
 
     if (status === 'idle') {
         return (
-            <div className="flex items-center justify-center h-full min-h-[400px] bg-white/50 rounded-lg border-2 border-dashed border-pink-200">
-                <p className="text-pink-400 text-lg font-serif">Add names and generate puzzle to preview</p>
+            <div className="puzzle-idle-state">
+                <div className="icon-container">
+                    <span>🧩</span>
+                </div>
+                <p className="title">{t.readyToCreate}</p>
+                <p className="subtitle">{t.addNamesAndGenerate}</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white p-12 rounded-[3rem] shadow-2xl shadow-pink-200/50 relative overflow-hidden">
-            {/* Decorative corners - Softer */}
-            <div className="absolute top-0 left-0 w-24 h-24 border-t-[6px] border-l-[6px] border-pink-200 rounded-tl-[2.5rem] m-6 opacity-50"></div>
-            <div className="absolute top-0 right-0 w-24 h-24 border-t-[6px] border-r-[6px] border-pink-200 rounded-tr-[2.5rem] m-6 opacity-50"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 border-b-[6px] border-l-[6px] border-pink-200 rounded-bl-[2.5rem] m-6 opacity-50"></div>
-            <div className="absolute bottom-0 right-0 w-24 h-24 border-b-[6px] border-r-[6px] border-pink-200 rounded-br-[2.5rem] m-6 opacity-50"></div>
+        <div className="puzzle-container">
+            {/* Decorative Header */}
+            <div className="puzzle-header">
+                <h3>{t.findTheGuests}</h3>
+                <div className="divider" />
+            </div>
 
             {status === 'impossible' && (
-                <div className="mb-8 p-6 bg-red-50 border-none rounded-2xl text-red-700 shadow-inner">
-                    <p className="font-bold text-lg mb-2">Could not fit the following names:</p>
-                    <ul className="list-disc list-inside space-y-1">
-                        {unplacedWords.map((w) => (
-                            <li key={w}>{w}</li>
-                        ))}
-                    </ul>
-                    <p className="text-sm mt-4 font-medium">Try increasing the grid size.</p>
+                <div className="error-message">
+                    <AlertCircle size={20} />
+                    <div className="error-content">
+                        <p className="error-title">{t.someNamesCantFit}</p>
+                        <ul>
+                            {unplacedWords.map((w) => (
+                                <li key={w}>{w}</li>
+                            ))}
+                        </ul>
+                        <p className="error-hint">{t.tryIncreasingGrid}</p>
+                    </div>
                 </div>
             )}
 
             <div
-                className="grid gap-2 mx-auto w-fit p-4"
+                className="grid-wrapper"
                 style={{
                     gridTemplateColumns: `repeat(${grid[0]?.length || 1}, minmax(0, 1fr))`
                 }}
@@ -43,12 +53,16 @@ export const PuzzleGrid: React.FC = () => {
                     row.map((cell, cIndex) => (
                         <div
                             key={`${rIndex}-${cIndex}`}
-                            className="w-10 h-10 flex items-center justify-center text-xl font-serif text-gray-700 uppercase bg-pink-50/30 rounded-lg hover:bg-pink-100 transition-colors cursor-default select-none"
+                            className="grid-cell"
                         >
                             {cell}
                         </div>
                     ))
                 )}
+            </div>
+
+            <div className="puzzle-footer">
+                <p>{t.weddingOf}</p>
             </div>
         </div>
     );

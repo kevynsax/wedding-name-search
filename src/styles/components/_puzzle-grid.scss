@@ -1,0 +1,159 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.puzzle-idle-state {
+    @include flex-col;
+    @include flex-center;
+    min-height: 600px;
+    background-color: $color-white;
+    border-radius: 1rem; // rounded-2xl
+    border: 2px dashed $color-slate-200;
+    color: $color-slate-400;
+
+    .icon-container {
+        width: 4rem; // w-16
+        height: 4rem; // h-16
+        margin-bottom: $spacing-4;
+        border-radius: 9999px; // rounded-full
+        background-color: $color-slate-50;
+        @include flex-center;
+
+        span {
+            font-size: 1.875rem; // text-3xl
+        }
+    }
+
+    .title {
+        font-size: 1.125rem; // text-lg
+        font-weight: 500; // font-medium
+        color: $color-slate-500;
+    }
+
+    .subtitle {
+        font-size: 0.875rem; // text-sm
+    }
+}
+
+.puzzle-container {
+    background-color: $color-white;
+    padding: $spacing-8;
+    border-radius: 1rem; // rounded-2xl
+    border: 1px solid $color-slate-100;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); // shadow-xl
+
+    @include media-up($breakpoint-sm) {
+        padding: $spacing-12;
+    }
+
+    .puzzle-header {
+        text-align: center;
+        margin-bottom: $spacing-8;
+
+        h3 {
+            font-size: 1.5rem; // text-2xl
+            color: $color-slate-800;
+            margin-bottom: $spacing-2;
+        }
+
+        .divider {
+            height: 0.25rem; // h-1
+            width: 5rem; // w-20
+            background-color: $color-slate-200;
+            margin: 0 auto;
+            border-radius: 9999px; // rounded-full
+        }
+    }
+
+    .error-message {
+        margin-bottom: $spacing-8;
+        padding: $spacing-4;
+        background-color: #fef2f2; // red-50
+        border: 1px solid #fecaca; // red-100
+        border-radius: 0.75rem; // rounded-xl
+        display: flex;
+        align-items: flex-start;
+        gap: $spacing-3;
+        color: #b91c1c; // red-700
+
+        svg {
+            flex-shrink: 0;
+            margin-top: 0.125rem; // mt-0.5
+        }
+
+        .error-content {
+            p.error-title {
+                font-weight: 600; // font-semibold
+                margin-bottom: 0.25rem; // mb-1
+            }
+
+            ul {
+                list-style-type: disc;
+                list-style-position: inside;
+                font-size: 0.875rem; // text-sm
+                opacity: 0.9;
+
+                li {
+                    margin-top: 0.125rem; // space-y-0.5
+                }
+            }
+
+            .error-hint {
+                font-size: 0.75rem; // text-xs
+                margin-top: $spacing-2;
+                font-weight: 500; // font-medium
+                text-transform: uppercase;
+                letter-spacing: 0.05em; // tracking-wide
+                opacity: 0.75;
+            }
+        }
+    }
+
+    .grid-wrapper {
+        display: grid;
+        gap: 1px;
+        background-color: $color-slate-100;
+        border: 1px solid $color-slate-100;
+        border-radius: 0.5rem; // rounded-lg
+        overflow: hidden;
+        margin: 0 auto;
+        width: fit-content;
+        @include shadow-sm;
+
+        .grid-cell {
+            width: 2rem; // w-8
+            height: 2rem; // h-8
+            @include flex-center;
+            font-size: 1.125rem; // text-lg
+            font-family: $font-serif;
+            color: $color-slate-700;
+            background-color: $color-white;
+            cursor: default;
+            user-select: none;
+            @include transition(background-color);
+
+            &:hover {
+                background-color: $color-slate-50;
+            }
+
+            @include media-up($breakpoint-sm) {
+                width: 2.5rem; // w-10
+                height: 2.5rem; // h-10
+                font-size: 1.25rem; // text-xl
+            }
+        }
+    }
+
+    .puzzle-footer {
+        margin-top: $spacing-8;
+        text-align: center;
+
+        p {
+            font-size: 0.875rem; // text-sm
+            color: $color-slate-400;
+            font-weight: 300; // font-light
+            font-style: italic;
+        }
+    }
+}

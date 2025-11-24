@@ -1,0 +1,199 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.name-input-container {
+    >*+* {
+        margin-top: $spacing-6; // space-y-6
+    }
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    color: $color-slate-800;
+    margin-bottom: $spacing-2;
+
+    .icon {
+        color: $color-slate-400;
+    }
+
+    h2 {
+        font-size: 1.125rem; // text-lg
+        font-weight: 600; // font-semibold
+        letter-spacing: -0.025em; // tracking-tight
+        font-family: $font-sans;
+    }
+}
+
+.input-group {
+    position: relative;
+
+    input {
+        width: 100%;
+        padding: $spacing-3;
+        padding-left: $spacing-4;
+        padding-right: $spacing-12;
+        background-color: $color-slate-50;
+        border: 1px solid $color-slate-200;
+        border-radius: 0.75rem; // rounded-xl
+        color: $color-slate-700;
+        @include transition(all);
+
+        &::placeholder {
+            color: $color-slate-400;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px $color-slate-200; // ring-2
+            border-color: $color-slate-400;
+        }
+    }
+
+    .btn-add {
+        position: absolute;
+        right: $spacing-2;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: $spacing-2;
+        background-color: $color-white;
+        color: $color-slate-600;
+        border-radius: 0.5rem; // rounded-lg
+        border: 1px solid $color-slate-200;
+        @include shadow-sm;
+        @include transition(all);
+        @include flex-center;
+
+        &:hover {
+            background-color: $color-slate-100;
+        }
+    }
+}
+
+.bulk-input-group {
+    textarea {
+        width: 100%;
+        padding: $spacing-4;
+        background-color: $color-slate-50;
+        border: 1px solid $color-slate-200;
+        border-radius: 0.75rem; // rounded-xl
+        height: 6rem; // h-24
+        color: $color-slate-700;
+        resize: none;
+        font-size: 0.875rem; // text-sm
+        @include transition(all);
+
+        &::placeholder {
+            color: $color-slate-400;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px $color-slate-200;
+            border-color: $color-slate-400;
+        }
+    }
+
+    .btn-bulk-add {
+        margin-top: $spacing-2;
+        width: 100%;
+        padding-top: $spacing-2;
+        padding-bottom: $spacing-2;
+        font-size: 0.875rem; // text-sm
+        font-weight: 500; // font-medium
+        color: $color-slate-600;
+        background-color: $color-white;
+        border: 1px solid $color-slate-200;
+        border-radius: 0.5rem; // rounded-lg
+        @include transition(all);
+
+        &:hover {
+            background-color: $color-slate-50;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.guest-list {
+    >*+* {
+        margin-top: $spacing-2; // space-y-2
+    }
+
+    .list-header {
+        @include flex-between;
+        font-size: 0.75rem; // text-xs
+        font-weight: 500; // font-medium
+        color: $color-slate-400;
+        text-transform: uppercase;
+        letter-spacing: 0.05em; // tracking-wider
+        padding-left: $spacing-1;
+        padding-right: $spacing-1;
+    }
+
+    .list-content {
+        max-height: 16rem; // max-h-64
+        overflow-y: auto;
+        padding-right: $spacing-1;
+
+        // Custom scrollbar class is global, but we can ensure it applies here
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        >*+* {
+            margin-top: $spacing-2;
+        }
+    }
+
+    .guest-item {
+        @include flex-between;
+        background-color: $color-white;
+        padding: $spacing-3;
+        border-radius: 0.75rem; // rounded-xl
+        border: 1px solid $color-slate-100;
+        @include shadow-sm;
+        @include transition(all);
+
+        &:hover {
+            border-color: $color-slate-300;
+
+            .btn-delete {
+                opacity: 1;
+            }
+        }
+
+        span {
+            color: $color-slate-700;
+            font-weight: 500; // font-medium
+        }
+
+        .btn-delete {
+            color: $color-slate-300;
+            padding: $spacing-1;
+            opacity: 0;
+            @include transition(color, opacity);
+
+            &:hover {
+                color: #f87171; // red-400
+            }
+        }
+    }
+
+    .empty-state {
+        text-align: center;
+        padding-top: $spacing-8;
+        padding-bottom: $spacing-8;
+        border: 2px dashed $color-slate-100;
+        border-radius: 0.75rem; // rounded-xl
+
+        p {
+            color: $color-slate-400;
+            font-size: 0.875rem; // text-sm
+        }
+    }
+}

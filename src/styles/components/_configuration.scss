@@ -1,0 +1,125 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.configuration-container {
+    >*+* {
+        margin-top: $spacing-6; // space-y-6
+    }
+}
+
+.config-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing-4;
+}
+
+.config-item {
+    >*+* {
+        margin-top: $spacing-2; // space-y-2
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        font-size: 0.75rem; // text-xs
+        font-weight: 500; // font-medium
+        color: $color-slate-500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em; // tracking-wider
+    }
+
+    input {
+        width: 100%;
+        padding: $spacing-3;
+        background-color: $color-slate-50;
+        border: 1px solid $color-slate-200;
+        border-radius: 0.75rem; // rounded-xl
+        color: $color-slate-700;
+        font-weight: 500; // font-medium
+        text-align: center;
+        @include transition(all);
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px $color-slate-200;
+            border-color: $color-slate-400;
+        }
+    }
+}
+
+.toggle-container {
+    @include flex-between;
+    padding: $spacing-4;
+    background-color: $color-slate-50;
+    border: 1px solid $color-slate-200;
+    border-radius: 0.75rem; // rounded-xl
+    cursor: pointer;
+    @include transition(all);
+
+    &:hover {
+        border-color: $color-slate-300;
+    }
+
+    .toggle-label {
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+
+        .icon-wrapper {
+            padding: $spacing-2;
+            background-color: $color-white;
+            border-radius: 0.5rem; // rounded-lg
+            border: 1px solid $color-slate-100;
+            color: $color-slate-400;
+        }
+
+        .text-wrapper {
+            @include flex-col;
+
+            .main-text {
+                font-size: 0.875rem; // text-sm
+                font-weight: 500; // font-medium
+                color: $color-slate-700;
+            }
+
+            .sub-text {
+                font-size: 0.75rem; // text-xs
+                color: $color-slate-400;
+            }
+        }
+    }
+
+    .toggle-switch {
+        width: 3rem; // w-12
+        height: 1.5rem; // h-6
+        border-radius: 9999px; // rounded-full
+        padding: 0.25rem; // p-1
+        @include transition(background-color);
+
+        &.active {
+            background-color: $color-slate-800;
+        }
+
+        &.inactive {
+            background-color: $color-slate-200;
+        }
+
+        .toggle-knob {
+            width: 1rem; // w-4
+            height: 1rem; // h-4
+            border-radius: 9999px; // rounded-full
+            background-color: $color-white;
+            @include shadow-sm;
+            transition: transform 0.2s;
+
+            &.active {
+                transform: translateX(1.5rem); // translate-x-6
+            }
+
+            &.inactive {
+                transform: translateX(0);
+            }
+        }
+    }
+}

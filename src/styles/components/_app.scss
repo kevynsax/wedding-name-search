@@ -1,0 +1,219 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.app-container {
+    min-height: 100vh;
+    @include flex-center;
+    @include flex-col;
+    padding: $spacing-12 $spacing-4;
+    background-color: $color-bg;
+
+    @include media-up($breakpoint-sm) {
+        padding-left: $spacing-6;
+        padding-right: $spacing-6;
+    }
+
+    @include media-up($breakpoint-lg) {
+        padding-left: $spacing-8;
+        padding-right: $spacing-8;
+    }
+
+    .logo-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $spacing-6;
+
+        img {
+            height: 12rem; // 50% bigger than 8rem
+            width: auto;
+        }
+    }
+}
+
+.app-card {
+    width: 100%;
+    max-width: 32rem; // max-w-lg
+    background-color: $color-white;
+    border-radius: 1.5rem; // rounded-3xl
+    border: 1px solid $color-white;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba($color-slate-200, 0.5); // shadow-2xl shadow-slate-200/50
+}
+
+.progress-bar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.25rem; // h-1
+    background-color: $color-slate-100;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: $color-slate-800;
+    transition: width 0.5s ease-out;
+}
+
+.card-content {
+    padding: $spacing-8;
+
+    @include media-up($breakpoint-sm) {
+        padding: $spacing-10;
+    }
+}
+
+.btn-back {
+    position: absolute;
+    top: $spacing-6;
+    left: $spacing-6;
+    color: $color-slate-400;
+    @include transition(color);
+
+    &:hover {
+        color: $color-slate-600;
+    }
+}
+
+.step-welcome {
+    text-align: center;
+    padding-top: $spacing-8;
+    padding-bottom: $spacing-8;
+
+    >*+* {
+        margin-top: $spacing-8; // space-y-8
+    }
+
+    h1 {
+        font-size: 2.25rem; // text-4xl
+        color: $color-slate-800;
+        margin-bottom: $spacing-4;
+    }
+
+    p {
+        font-size: 1.125rem; // text-lg
+        color: $color-slate-500;
+        font-weight: 300; // font-light
+    }
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    background-color: $color-slate-900;
+    color: $color-white;
+    border-radius: 9999px; // rounded-full (or xl depending on usage)
+    font-weight: 500; // font-medium
+    @include transition(background-color, transform);
+
+    &:hover {
+        background-color: $color-slate-800;
+    }
+
+    &.btn-lg {
+        padding: $spacing-4 $spacing-8;
+        font-size: 1.125rem; // text-lg
+        box-shadow: 0 10px 15px -3px rgba($color-slate-900, 0.2); // shadow-lg shadow-slate-900/20
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    &.btn-md {
+        padding: $spacing-3 $spacing-6;
+        border-radius: 0.75rem; // rounded-xl
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.step-container {
+    >*+* {
+        margin-top: $spacing-6; // space-y-6
+    }
+}
+
+.step-header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+
+    h2 {
+        font-size: 1.5rem; // text-2xl
+        color: $color-slate-800;
+    }
+
+    p {
+        color: $color-slate-500;
+        font-size: 0.875rem; // text-sm
+    }
+}
+
+.result-header {
+    @extend .step-header;
+    margin-bottom: $spacing-4;
+}
+
+.puzzle-preview {
+    transform: scale(0.9);
+    transform-origin: top;
+}
+
+.result-actions {
+    display: flex;
+    gap: $spacing-3;
+    padding-top: $spacing-4;
+
+    .btn-print {
+        flex: 1;
+        @include flex-center;
+        gap: $spacing-2;
+        background-color: $color-slate-900;
+        color: $color-white;
+        padding-top: $spacing-3;
+        padding-bottom: $spacing-3;
+        border-radius: 0.75rem; // rounded-xl
+        @include shadow-lg;
+        @include transition(background-color);
+
+        &:hover {
+            background-color: $color-slate-800;
+        }
+    }
+
+    .btn-secondary {
+        flex: 1;
+        @include flex-center;
+        gap: $spacing-2;
+        background-color: $color-white;
+        color: $color-slate-700;
+        border: 1px solid $color-slate-200;
+        padding-top: $spacing-3;
+        padding-bottom: $spacing-3;
+        border-radius: 0.75rem; // rounded-xl
+        @include transition(background-color);
+
+        &:hover {
+            background-color: $color-slate-50;
+        }
+    }
+}
+
+.step-footer {
+    margin-top: $spacing-8;
+    padding-top: $spacing-6;
+    border-top: 1px solid $color-slate-100;
+    display: flex;
+    justify-content: flex-end;
+}
