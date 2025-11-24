@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# Wedding Name Search 💍
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beautiful, wedding-themed word search puzzle generator for your guests. Built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+![Wedding Word Search](/public/logo.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Custom Word Search Generation**: Create unique puzzles with your guest list.
+- **Smart Placement Algorithm**: Efficiently places words and detects if the grid is too small.
+- **Configurable Grid**: Adjust rows, columns, and options (like keeping surnames together).
+- **Beautiful Floral Design**: Elegant watercolor aesthetics with animations.
+- **Print Ready**: Optimized styles for printing the puzzles directly from the browser.
+- **Responsive**: Works seamlessly on desktop and mobile devices.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend**: React 18, TypeScript, Vite
+- **State Management**: Redux Toolkit
+- **Styling**: Tailwind CSS, Vanilla CSS (for custom themes)
+- **Icons**: Lucide React
+- **Deployment**: Docker, Nginx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js (v18+)
+- npm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Local Development
+
+1.  **Clone the repository**
+    ```bash
+    git clone git@github.com:kevynsax/wedding-name-search.git
+    cd wedding-name-search
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server**
+    ```bash
+    npm run dev
+    ```
+    Open `http://localhost:5173` in your browser.
+
+## 🐳 Docker Deployment
+
+This project is containerized using Docker and served with Nginx. It is configured to run under the `/wedding-name-search/` subpath.
+
+### 1. Build the Image
+
+```bash
+docker build -t wedding-name-search .
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Run the Container
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+docker run -p 80:80 wedding-name-search
 ```
+
+### 3. Nginx Reverse Proxy Configuration
+
+If you are running this behind a main Nginx reverse proxy (as per your request), add the following location block to your server configuration:
+
+```nginx
+location /wedding-name-search/ {
+    proxy_pass http://wedding-name-search/; # Replace with your actual container/service name
+}
+```
+
+## 📂 Project Structure
+
+- `/src/components`: React components (NameInput, Configuration, PuzzleGrid).
+- `/src/store`: Redux state management.
+- `/src/utils`: Word search generation algorithm.
+- `/public`: Static assets (images, icons).
+
+## 📄 License
+
+This project is for personal use. Feel free to modify it for your own wedding!
