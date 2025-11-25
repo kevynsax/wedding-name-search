@@ -21,6 +21,15 @@
         span {
             font-size: 1.875rem; // text-3xl
         }
+
+        .loading-spinner {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 3px solid $color-slate-200;
+            border-top-color: $color-accent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
     }
 
     .title {
@@ -34,17 +43,23 @@
     }
 }
 
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .puzzle-container {
     background-color: $color-white;
-    padding: $spacing-8;
+    padding: $spacing-6;
     border-radius: 1rem; // rounded-2xl
     border: 1px solid $color-slate-100;
     position: relative;
-    overflow: hidden;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); // shadow-xl
+    max-width: 100%;
 
     @include media-up($breakpoint-sm) {
-        padding: $spacing-12;
+        padding: $spacing-8;
     }
 
     .puzzle-header {
@@ -110,22 +125,27 @@
         }
     }
 
+    .grid-container {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
     .grid-wrapper {
         display: grid;
         gap: 1px;
         background-color: $color-slate-100;
         border: 1px solid $color-slate-100;
         border-radius: 0.5rem; // rounded-lg
-        overflow: hidden;
-        margin: 0 auto;
-        width: fit-content;
+        overflow: auto;
+        max-width: 100%;
         @include shadow-sm;
 
         .grid-cell {
-            width: 2rem; // w-8
-            height: 2rem; // h-8
+            width: 1.5rem; // smaller for large grids
+            height: 1.5rem;
             @include flex-center;
-            font-size: 1.125rem; // text-lg
+            font-size: 0.875rem; // smaller text
             font-family: $font-serif;
             color: $color-slate-700;
             background-color: $color-white;
@@ -138,10 +158,34 @@
             }
 
             @include media-up($breakpoint-sm) {
-                width: 2.5rem; // w-10
-                height: 2.5rem; // h-10
-                font-size: 1.25rem; // text-xl
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 1rem;
             }
+
+            @include media-up($breakpoint-md) {
+                width: 2rem;
+                height: 2rem;
+                font-size: 1.125rem;
+            }
+        }
+    }
+
+    // SVG overlay for word highlighting
+    .word-highlights {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    // Hide highlighting when printing
+    @media print {
+        .print-hidden {
+            display: none !important;
         }
     }
 

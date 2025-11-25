@@ -5,6 +5,10 @@ import { addName, removeName, setNames } from '../store/puzzleSlice';
 import { Plus, Trash2, Users } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
+const capitalize = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const NameInput: React.FC = () => {
     const dispatch = useDispatch();
     const names = useSelector((state: RootState) => state.puzzle.names);
@@ -15,7 +19,7 @@ export const NameInput: React.FC = () => {
     const handleAddSingle = (e: React.FormEvent) => {
         e.preventDefault();
         if (singleName.trim()) {
-            dispatch(addName(singleName.trim()));
+            dispatch(addName(capitalize(singleName.trim())));
             setSingleName('');
         }
     };
@@ -24,6 +28,7 @@ export const NameInput: React.FC = () => {
         const newNames = bulkNames
             .split('\n')
             .map((n) => n.trim())
+            .map((n) => capitalize(n))
             .filter((n) => n.length > 0);
         const uniqueNames = Array.from(new Set([...names, ...newNames]));
         dispatch(setNames(uniqueNames));

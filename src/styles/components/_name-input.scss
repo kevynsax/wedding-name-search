@@ -27,13 +27,13 @@
 }
 
 .input-group {
-    position: relative;
+    display: flex;
+    gap: $spacing-2;
+    position: relative; // For absolute positioning of button
 
     input {
-        width: 100%;
-        padding: $spacing-3;
-        padding-left: $spacing-4;
-        padding-right: $spacing-12;
+        flex: 1;
+        padding: $spacing-3 5rem $spacing-3 $spacing-4; // Extra right padding for button
         background-color: $color-slate-50;
         border: 1px solid $color-slate-200;
         border-radius: 0.75rem; // rounded-xl
@@ -46,27 +46,26 @@
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 0 2px $color-slate-200; // ring-2
+            box-shadow: 0 0 0 2px $color-slate-200;
             border-color: $color-slate-400;
         }
     }
 
     .btn-add {
         position: absolute;
-        right: $spacing-2;
+        right: 0.25rem; // Small gap from right edge
         top: 50%;
         transform: translateY(-50%);
-        padding: $spacing-2;
-        background-color: $color-white;
-        color: $color-slate-600;
+        background-color: $color-slate-900;
+        color: $color-white;
+        padding: $spacing-2 $spacing-4;
         border-radius: 0.5rem; // rounded-lg
-        border: 1px solid $color-slate-200;
-        @include shadow-sm;
-        @include transition(all);
-        @include flex-center;
+        font-size: 0.875rem; // text-sm
+        font-weight: 500; // font-medium
+        @include transition(background-color);
 
         &:hover {
-            background-color: $color-slate-100;
+            background-color: $color-slate-800;
         }
     }
 }
@@ -161,10 +160,6 @@
 
         &:hover {
             border-color: $color-slate-300;
-
-            .btn-delete {
-                opacity: 1;
-            }
         }
 
         span {
@@ -173,10 +168,10 @@
         }
 
         .btn-delete {
-            color: $color-slate-300;
+            color: $color-slate-400;
             padding: $spacing-1;
-            opacity: 0;
-            @include transition(color, opacity);
+            opacity: 1; // Always visible for mobile
+            @include transition(color);
 
             &:hover {
                 color: #f87171; // red-400

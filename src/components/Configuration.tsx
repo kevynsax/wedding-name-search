@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 import { updateConfig } from '../store/puzzleSlice';
@@ -9,6 +9,10 @@ export const Configuration: React.FC = () => {
     const dispatch = useDispatch();
     const { rows, cols, maintainSurnames } = useSelector((state: RootState) => state.puzzle);
     const { t } = useLanguage();
+    // Local state for inputs to allow empty values
+    const [rowsInput, setRowsInput] = useState(rows.toString());
+    const [colsInput, setColsInput] = useState(cols.toString());
+
 
     return (
         <div className="configuration-container">
@@ -24,8 +28,19 @@ export const Configuration: React.FC = () => {
                     </label>
                     <input
                         type="number"
-                        value={rows}
-                        onChange={(e) => dispatch(updateConfig({ rows: parseInt(e.target.value) || 10 }))}
+                        value={rowsInput}
+                        onChange={(e) => setRowsInput(e.target.value)}
+                        onBlur={() => {
+                            const val = rowsInput.trim();
+                            if (val) {
+                                const newRows = parseInt(val);
+                                dispatch(updateConfig({ rows: newRows }));
+                                setRowsInput(newRows.toString());
+                            } else {
+                                // Keep empty without resetting to default
+                                setRowsInput('');
+                            }
+                        }}
                         min="5"
                         max="30"
                     />
@@ -36,8 +51,14 @@ export const Configuration: React.FC = () => {
                     </label>
                     <input
                         type="number"
-                        value={cols}
-                        onChange={(e) => dispatch(updateConfig({ cols: parseInt(e.target.value) || 10 }))}
+                        value={colsInput}
+                        onChange={(e) => setColsInput(e.target.value)}
+                        onBlur={() => {
+                            const val = colsInput.trim();
+                            const newCols = val ? parseInt(val) : 10;
+                            dispatch(updateConfig({ cols: newCols }));
+                            setColsInput(newCols.toString());
+                        }}
                         min="5"
                         max="30"
                     />

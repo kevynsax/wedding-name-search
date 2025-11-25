@@ -2,7 +2,7 @@ export interface WordPosition {
     word: string;
     startRow: number;
     startCol: number;
-    direction: 'horizontal' | 'vertical' | 'diagonal' | 'diagonalBack' | 'verticalUp' | 'horizontalBack';
+    direction: 'horizontal' | 'vertical' | 'diagonal';
 }
 
 export interface GenerationResult {
@@ -11,14 +11,12 @@ export interface GenerationResult {
     unplacedWords: string[];
 }
 
+// Only left-to-right directions: horizontal and diagonal-down-right
 const DIRECTIONS = [
-    { x: 1, y: 0, name: 'horizontal' },
-    { x: 0, y: 1, name: 'vertical' },
-    { x: 1, y: 1, name: 'diagonal' },
-    { x: 1, y: -1, name: 'diagonalBack' },
-    { x: 0, y: -1, name: 'verticalUp' },
-    { x: -1, y: 0, name: 'horizontalBack' },
-] as const;
+    { x: 1, y: 0, name: 'horizontal' as const },
+    { x: 0, y: 1, name: 'vertical' as const },
+    { x: 1, y: 1, name: 'diagonal' as const },
+];
 
 export const generateWordSearch = (
     words: string[],
@@ -34,14 +32,13 @@ export const generateWordSearch = (
     const placedWords: WordPosition[] = [];
     const unplacedWords: string[] = [];
 
-    // Sort words by length (longest first) to improve placement success
     // Process words: remove spaces if not maintaining surnames, uppercase everything
     const processedWords = words.map((w) => ({
         original: w,
         clean: maintainSurnames ? w.toUpperCase().replace(/\s+/g, '') : w.toUpperCase().split(' ')[0],
     }));
 
-    // Sort by length descending
+    // Sort by length descending to place longer words first
     processedWords.sort((a, b) => b.clean.length - a.clean.length);
 
     for (const { original, clean } of processedWords) {
@@ -51,8 +48,9 @@ export const generateWordSearch = (
         }
 
         let placed = false;
-        // Try to place the word multiple times
-        for (let attempt = 0; attempt < 100; attempt++) {
+        // Increase attempts to 25_000_000 for better placement success with large name lists
+        for (let attempt = 0; attempt < 25_000_000; attempt++) {
+            // Try each direction with equal probability
             const direction = DIRECTIONS[Math.floor(Math.random() * DIRECTIONS.length)];
             const startRow = Math.floor(Math.random() * rows);
             const startCol = Math.floor(Math.random() * cols);
