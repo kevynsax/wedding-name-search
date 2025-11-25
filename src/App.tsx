@@ -107,19 +107,14 @@ function App() {
         return (
           <>
             <div className="step-container">
-              <div className="result-header">
+              <div className="result-header screen-only">
                 <h2>{t.yourPuzzle}</h2>
                 <p>{t.readyToPrint}</p>
               </div>
 
               {/* Screen version - with circles */}
               <div className="screen-only">
-                <PuzzleGrid showCircles={true} />
-              </div>
-
-              {/* Print version - Page 1: With circles */}
-              <div className="print-page-1 print-only">
-                <h2 className="print-title">Answer Key</h2>
+                  <h2 className="print-title print-only">Answer Key</h2>
                 <PuzzleGrid showCircles={true} />
               </div>
 

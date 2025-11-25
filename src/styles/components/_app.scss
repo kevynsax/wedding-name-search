@@ -275,7 +275,6 @@
     }
 }
 
-// Screen/Print visibility controls
 .screen-only {
     display: block;
 }
@@ -310,14 +309,12 @@
         color: $color-slate-800;
     }
 
-    // Hide buttons and UI elements when printing
     .result-actions,
     .btn-back,
     .logo-container {
         display: none !important;
     }
 
-    // Adjust card for printing
     .app-card {
         box-shadow: none;
         border: none;
