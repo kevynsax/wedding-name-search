@@ -33,7 +33,7 @@ export interface Translations {
     yourPuzzle: string;
     readyToPrint: string;
     print: string;
-    startOver: string;
+    tryAgain: string;
     findTheGuests: string;
     weddingOf: string;
 
@@ -73,7 +73,7 @@ export const translations: Record<Language, Translations> = {
         yourPuzzle: 'Your Puzzle',
         readyToPrint: 'Ready to print!',
         print: 'Print',
-        startOver: 'Start Over',
+        tryAgain: 'Try Again',
         findTheGuests: 'Find the Guests',
         weddingOf: 'Wedding of [Name] & [Name]',
 
@@ -111,7 +111,7 @@ export const translations: Record<Language, Translations> = {
         yourPuzzle: 'Seu Quebra-Cabeça',
         readyToPrint: 'Pronto para imprimir!',
         print: 'Imprimir',
-        startOver: 'Recomeçar',
+        tryAgain: 'Gerar Novamente',
         findTheGuests: 'Encontre os Convidados',
         weddingOf: 'Casamento de [Nome] & [Nome]',
 
@@ -149,7 +149,7 @@ export const translations: Record<Language, Translations> = {
         yourPuzzle: 'Tu Rompecabezas',
         readyToPrint: '¡Listo para imprimir!',
         print: 'Imprimir',
-        startOver: 'Empezar de Nuevo',
+        tryAgain: 'Intentar de Nuevo',
         findTheGuests: 'Encuentra a los Invitados',
         weddingOf: 'Boda de [Nombre] & [Nombre]',
 

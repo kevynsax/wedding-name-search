@@ -24,7 +24,7 @@ export const generateWordSearch = (
     cols: number,
     maintainSurnames: boolean,
     maxGridAttempts: number = 2_000,
-    maxPlacementAttempts: number = 10_000
+    maxPlacementAttempts: number = 5_000
 ): GenerationResult => {
     // Process words: remove spaces if not maintaining surnames, uppercase everything
     const processedWords = words.map((w) => ({
