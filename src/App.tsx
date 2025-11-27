@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from './store/store';
 import { setPuzzle, setStatus, resetPuzzle } from './store/puzzleSlice';
@@ -15,6 +15,10 @@ function App() {
     const [currentStep, setCurrentStep] = useState(0);
     const { t } = useLanguage();
     const [validationError, setValidationError] = useState('');
+
+    useEffect(() => {
+        document.title = t.appTitle; // Set the document title dynamically
+    }, [t.appTitle]);
 
     const handleGenerate = () => {
         dispatch(resetPuzzle());

@@ -46,7 +46,7 @@ export interface Translations {
 
 export const translations: Record<Language, Translations> = {
     en: {
-        appTitle: 'Name Search Puzzle',
+        appTitle: 'Name Word Search Generator',
         appSubtitle: 'Create a personalized word search puzzle.',
         startCreating: 'Start Creating',
 
