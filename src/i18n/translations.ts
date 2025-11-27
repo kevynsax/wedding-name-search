@@ -47,7 +47,7 @@ export interface Translations {
 export const translations: Record<Language, Translations> = {
     en: {
         appTitle: 'Name Search Puzzle',
-        appSubtitle: 'Create a beautiful, personalized puzzle for your special day.',
+        appSubtitle: 'Create a personalized word search puzzle.',
         startCreating: 'Start Creating',
 
         addGuestNames: 'Add Guest Names',
@@ -84,12 +84,12 @@ export const translations: Record<Language, Translations> = {
     },
 
     pt: {
-        appTitle: 'Quebra-Cabeça de Nomes',
-        appSubtitle: 'Crie um quebra-cabeça bonito e personalizado para o seu dia especial.',
+        appTitle: 'Caça-palavras de Nomes',
+        appSubtitle: 'Crie um caça palavras personalizado.',
         startCreating: 'Começar a Criar',
 
         addGuestNames: 'Adicionar Nomes dos Convidados',
-        whoInPuzzle: 'Quem deve estar escondido no quebra-cabeça?',
+        whoInPuzzle: 'Quem deve estar escondido no caça palavras?',
         addGuestPlaceholder: 'Adicionar nome do convidado...',
         pasteListPlaceholder: 'Ou cole uma lista (um por linha)...',
         addBulkList: 'Adicionar Lista em Massa',
@@ -97,7 +97,7 @@ export const translations: Record<Language, Translations> = {
         noGuestsYet: 'Nenhum convidado adicionado ainda',
         guestList: 'Lista de Convidados',
 
-        puzzleSettings: 'Configurações do Quebra-Cabeça',
+        puzzleSettings: 'Configurações do Caça-palavras',
         customizeGrid: 'Personalize o tamanho da grade e opções',
         rows: 'Linhas',
         columns: 'Colunas',
@@ -115,7 +115,7 @@ export const translations: Record<Language, Translations> = {
         findTheGuests: 'Encontre os Convidados',
         weddingOf: 'Casamento de [Nome] & [Nome]',
 
-        readyToCreate: 'Pronto para criar seu quebra-cabeça',
+        readyToCreate: 'Pronto para criar seu caça palavras',
         addNamesAndGenerate: 'Adicione nomes e clique em Gerar para começar',
         someNamesCantFit: 'Alguns nomes não couberam:',
         tryIncreasingGrid: 'Tente aumentar o tamanho da grade',
@@ -123,7 +123,7 @@ export const translations: Record<Language, Translations> = {
 
     es: {
         appTitle: 'Rompecabezas de Nombres',
-        appSubtitle: 'Crea un hermoso rompecabezas personalizado para tu día especial.',
+        appSubtitle: 'Crea un rompecabezas de palabras personalizado.',
         startCreating: 'Comenzar a Crear',
 
         addGuestNames: 'Agregar Nombres de Invitados',
